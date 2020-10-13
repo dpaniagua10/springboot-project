@@ -1,0 +1,9 @@
+package net.springboot.java.repository;
+
+import org.springframework.data.repository.CrudRepository;
+
+import net.springboot.java.model.ProductSold;
+
+public interface ProductSoldRepository extends CrudRepository<ProductSold, Integer> {
+
+}

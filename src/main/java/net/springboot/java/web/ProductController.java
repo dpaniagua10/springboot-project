@@ -13,9 +13,10 @@ import net.springboot.java.repository.ProductRepository;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping(path = "/productos")
+@RequestMapping(value = "/productos")
 public class ProductController {
-    @Autowired
+    
+	@Autowired
     private ProductRepository productosRepository;
 
     @GetMapping(value = "/agregar")
@@ -33,7 +34,7 @@ public class ProductController {
     @PostMapping(value = "/eliminar")
     public String eliminarProducto(@ModelAttribute Product producto, RedirectAttributes redirectAttrs) {
         redirectAttrs
-                .addFlashAttribute("mensaje", "Eliminado correctamente")
+                .addFlashAttribute("mensaje", "Product Successfully Removed")
                 .addFlashAttribute("clase", "warning");
         productosRepository.deleteById(producto.getId());
         return "redirect:/productos/mostrar";
@@ -55,13 +56,14 @@ public class ProductController {
 
         if (posibleProductoExistente != null && !posibleProductoExistente.getId().equals(producto.getId())) {
             redirectAttrs
-                    .addFlashAttribute("mensaje", "Ya existe un producto con ese código")
+                    .addFlashAttribute("mensaje", "\r\n"
+                    		+ "There is already a Product with that Code")
                     .addFlashAttribute("clase", "warning");
             return "redirect:/productos/agregar";
         }
         productosRepository.save(producto);
         redirectAttrs
-                .addFlashAttribute("mensaje", "Editado correctamente")
+                .addFlashAttribute("mensaje", "Product Edited Correctly")
                 .addFlashAttribute("clase", "success");
         return "redirect:/productos/mostrar";
     }
@@ -79,13 +81,14 @@ public class ProductController {
         }
         if (productosRepository.findFirstByCodigo(producto.getCodigo()) != null) {
             redirectAttrs
-                    .addFlashAttribute("mensaje", "Ya existe un producto con ese código")
+                    .addFlashAttribute("mensaje", "\r\n"
+                    		+ "There is already a Product with that Code")
                     .addFlashAttribute("clase", "warning");
             return "redirect:/productos/agregar";
         }
         productosRepository.save(producto);
         redirectAttrs
-                .addFlashAttribute("mensaje", "Agregado correctamente")
+                .addFlashAttribute("mensaje", "Product Added Correctly")
                 .addFlashAttribute("clase", "success");
         return "redirect:/productos/agregar";
     }

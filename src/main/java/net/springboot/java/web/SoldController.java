@@ -67,9 +67,9 @@ public class SoldController {
             p.restarExistencia(productoParaVender.getCantidad());
             // Lo guardamos con la existencia ya restada
             productosRepository.save(p);
-            // Creamos un nuevo producto que será el que se guarda junto con la venta
+            //Creamos un nuevo producto que será el que se guarda junto con la venta
             ProductSold productoVendido = new ProductSold(productoParaVender.getCantidad(), productoParaVender.getPrecio(), productoParaVender.getNombre(), productoParaVender.getCodigo(), v);
-            // Y lo guardamos
+            //Y lo guardamos
             productosVendidosRepository.save(productoVendido);
         }
 
@@ -92,7 +92,8 @@ public class SoldController {
         return "vender/vender";
     }
 
-    private ArrayList<ProductToSell> obtenerCarrito(HttpServletRequest request) {
+    
+	private ArrayList<ProductToSell> obtenerCarrito(HttpServletRequest request) {
         ArrayList<ProductToSell> carrito = (ArrayList<ProductToSell>) request.getSession().getAttribute("carrito");
         if (carrito == null) {
             carrito = new ArrayList<>();

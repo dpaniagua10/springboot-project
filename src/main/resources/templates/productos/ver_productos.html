@@ -8,6 +8,8 @@
 
 <link rel="stylesheet" type="text/css"
 	th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
 
 <title>Web Development</title>
 </head>
@@ -55,7 +57,7 @@
              th:text="${mensaje}"
              class="alert">
         </div>
-        <a class="btn btn-success mb-2" th:href="@{/productos/agregar}">Add Product</a>
+        <a class="btn btn-success mb-2" th:href="@{/productos/agregar}"><i class="fas fa-plus"></i> Add Product</a>
         <br>
         <br>
         <div class="table-responsive">
@@ -77,13 +79,13 @@
                     <td th:text="'Q. '+${producto.precio}"></td>
                     <td th:text="${producto.existencia}"></td>
                     <td>
-                        <a class="btn btn-warning" th:href="@{/productos/editar/} + ${producto.id}">Edit<i
+                        <a class="btn btn-warning" th:href="@{/productos/editar/} + ${producto.id}"><i
                                 class="fa fa-edit"></i></a>
                     </td>
                     <td>
                         <form th:action="@{/productos/eliminar}" method="post">
                             <input type="hidden" name="id" th:value="${producto.id}"/>
-                            <button type="submit" class="btn btn-danger">Delete <i class="fa fa-trash"></i>
+                            <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i>
                             </button>
                         </form>
                     </td>

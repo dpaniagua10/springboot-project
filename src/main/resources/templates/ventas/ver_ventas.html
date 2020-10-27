@@ -9,12 +9,9 @@
 <link rel="stylesheet" type="text/css"
 	th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-
-
 <title>Web Development</title>
 </head>
 <body>
-	<!-- encabezado -->
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
@@ -31,9 +28,8 @@
 				<ul class="nav navbar-nav">
 					<li sec:authorize="isAuthenticated()"><a th:href="@{/vender/}">Sale</a></li>
 				</ul>
-				
 				<ul class="nav navbar-nav">
-					<li sec:authorize="isAuthenticated()"><a th:href="@{/productos/mostrar}">Products</a></li>
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/productos/mostrar}">Inventory</a></li>
 				</ul>
 				
 				<ul class="nav navbar-nav">
@@ -43,6 +39,7 @@
 				<ul class="nav navbar-nav">
 					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
 				</ul>
+				
 			
 			</div>
 		</div>
@@ -50,68 +47,54 @@
 
 	<br>
 	<br>
-	
-	<!-- frame  -->>
-	
 	<div class="col-md-8 col-md-offset-2">
-        <h2>Invoice</h2>
+        <h2>Report Sales</h2>
         <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}"
              th:text="${mensaje}"
              class="alert">
         </div>
-        <form th:object="${producto}" th:action="@{/vender/agregar}" method="post">
-            <div class="form-group">
-                <label for="codigo">Barcode Product</label>
-                <input autofocus autocomplete="off" th:field="*{codigo}" id="codigo"
-                       placeholder="Enter product code"
-                       type="text"
-                       class="form-control" th:classappend="${#fields.hasErrors('codigo')} ? 'is-invalid' : ''">
-                <div class="invalid-feedback" th:errors="*{codigo}"></div>
-
-            </div>
-        </form>
-        
-       	<h4>Description</h4>
+        <a class="btn btn-success mb-2" th:href="@{/vender/}"><i class="fas fa-plus"></i> Add Sale</a>
         <div class="table-responsive">
             <table class="table table-bordered">
                 <thead>
                 <tr>
-                    <th>Product Name</th>
-                    <th>Code</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
+                    <th>Date</th>
                     <th>Total</th>
-                    <th>Remove</th>
+                    <th>Products</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="producto, iterador : ${session.carrito}">
-                    <td th:text="${producto.nombre}"></td>
-                    <td th:text="${producto.codigo}"></td>
-                    <td th:text="${producto.precio}"></td>
-                    <td th:text="${producto.cantidad}"></td>
-                    <td th:text="${producto.total}"></td>
+                <tr th:each="venta : ${ventas}">
+                    <td th:text="${venta.fechaYHora}"></td>
+                    <td th:text="${venta.total}"></td>
                     <td>
-                        <form th:action="@{/vender/quitar/} + ${iterador.index}" method="post">
-                            <button type="submit" class="btn btn-danger"><i class="fa fa-eraser"></i>
-                            </button>
-                        </form>
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Name Product</th>
+                                <th>Barcode</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Total</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="producto : ${venta.productos}">
+                                <td th:text="${producto.nombre}"></td>
+                                <td th:text="${producto.codigo}"></td>
+                                <td th:text="${producto.cantidad}"></td>
+                                <td th:text="${producto.precio}"></td>
+                                <td th:text="${producto.total}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </td>
                 </tr>
                 </tbody>
             </table>
         </div>
-        <h1 th:text="${'Total: Q. ' + total}"></h1>
-        <form class="mb-2" th:action="@{/vender/terminar}" method="post">
-            <button type="submit" class="btn btn-success">Finish&nbsp;<i class="fa fa-check"></i>
-            </button>
-            <a th:href="@{/vender/limpiar}" class="btn btn-danger">Cancel Sale&nbsp;<i
-                    class="fa fa-trash"></i>
-            </a>
-        </form>
     </div>
 	
-	<!-- fin frame -->
 	
 	<script type="text/javascript"
 		th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>

@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
 
-<title>Web Development</title>
+<title>Web Inventory</title>
 </head>
 <body>
 	<!-- encabezado -->
@@ -25,22 +25,29 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#" th:href="@{/}">Home Web App</a>
+				<a class="navbar-brand" href="#" th:href="@{/}">Home Web</a>
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 		
 				<ul class="nav navbar-nav">
-					<li sec:authorize="isAuthenticated()"><a th:href="@{/productos/mostrar}">Products</a></li>
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/vender/}">Sales</a></li>
+				</ul>
+				<ul class="nav navbar-nav">
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/productos/mostrar}">Inventory</a></li>
 				</ul>
 				
 				<ul class="nav navbar-nav">
-					<li sec:authorize="isAuthenticated()"><a th:href="@{/registration}">Registration</a></li>
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/ventas/}">Report</a></li>
 				</ul>
+				
+				<ul class="nav navbar-nav">
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/registration}">Users</a></li>
+				</ul>
+				
 				
 				<ul class="nav navbar-nav">
 					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
 				</ul>
-				
 			
 			</div>
 		</div>
@@ -65,7 +72,7 @@
                 <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Code</th>
+                    <th>Barcode</th>
                     <th>Price</th>
                     <th>Existence</th>
                     <th>Edit</th>

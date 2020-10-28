@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
 
-<title>Web Development</title>
+<title>Web Add Product</title>
 </head>
 <body>
 	<!-- encabezado -->
@@ -25,19 +25,22 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#" th:href="@{/}">Home Web App</a>
+				<a class="navbar-brand" href="#" th:href="@{/}">Home Web</a>
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li sec:authorize="isAuthenticated()"><a th:href="@{/vender/}">Facturar</a></li>
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/vender/}">Sales</a></li>
+				</ul>
+				<ul class="nav navbar-nav">
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/productos/mostrar}">Inventory</a></li>
 				</ul>
 				
 				<ul class="nav navbar-nav">
-					<li sec:authorize="isAuthenticated()"><a th:href="@{/productos/mostrar}">Products</a></li>
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/ventas/}">Report</a></li>
 				</ul>
 				
 				<ul class="nav navbar-nav">
-					<li sec:authorize="isAuthenticated()"><a th:href="@{/registration}">Registration</a></li>
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/registration}">Users</a></li>
 				</ul>
 				
 				<ul class="nav navbar-nav">
@@ -54,7 +57,7 @@
 	<!-- frame  -->>
 	
 	<div class="col-md-8 col-md-offset-2">
-        <h2>Add Product</h2>
+        <h2><br>Add Product</h2>
         <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}"
              th:text="${mensaje}"
              class="alert">
@@ -93,7 +96,7 @@
 
             </div>
             <button class="btn btn-success" type="submit"><i class="fas fa-save"></i> Save</button>
-            &nbsp;<a class="btn btn-warning" th:href="@{/productos/mostrar}"><i class="far fa-list-alt"></i> Show all</a>
+            &nbsp;<a class="btn btn-warning" th:href="@{/productos/mostrar}"><i class="far fa-list-alt"></i> List all</a>
         </form>
     </div>
 

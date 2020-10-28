@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="es" xmlns="http://www.w3.org/199/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -22,30 +23,28 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#" th:href="@{/}">Home Web App</a>
+				<a class="navbar-brand" href="#" th:href="@{/}">Home Web</a>
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li sec:authorize="isAuthenticated()"><a th:href="@{/vender/}">Sale</a></li>
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/vender/}">Sales</a></li>
 				</ul>
 				<ul class="nav navbar-nav">
 					<li sec:authorize="isAuthenticated()"><a th:href="@{/productos/mostrar}">Inventory</a></li>
 				</ul>
 				
 				<ul class="nav navbar-nav">
-					<li sec:authorize="isAuthenticated()"><a th:href="@{/registration}">Registration</a></li>
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/ventas/}">Report</a></li>
 				</ul>
 				
 				<ul class="nav navbar-nav">
-					<li sec:authorize="isAuthenticated()"><a th:href="@{/ventas/}">Report Sale</a></li>
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/registration}">Users</a></li>
 				</ul>
-				
 				
 				<ul class="nav navbar-nav">
 					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
 				</ul>
-				
-			
+		
 			</div>
 		</div>
 	</nav>
@@ -53,12 +52,12 @@
 	<br>
 	<br>
 	<div class="container">
-		<h2>application prototype 1
+		<h2>Web Application
 			</h2>
 
-		<p>
-			Welcome <span sec:authentication="principal.username">User</span>
-		</p>
+		<h3>
+			Welcome: <span sec:authentication="principal.username">User</span>
+		</h3>
 
 	</div>
 	

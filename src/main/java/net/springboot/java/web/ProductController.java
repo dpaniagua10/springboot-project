@@ -40,10 +40,6 @@ public class ProductController {
         return "redirect:/productos/mostrar";
     }
 
-    // Se colocó el parámetro ID para eso de los errores, ya sé el id se puede recuperar
-    // a través del modelo, pero lo que yo quiero es que se vea la misma URL para regresar la vista con
-    // los errores en lugar de hacer un redirect, ya que si hago un redirect, no se muestran los errores del formulario
-    // y por eso regreso mejor la vista ;)
     @PostMapping(value = "/editar/{id}")
     public String actualizarProducto(@ModelAttribute @Valid Product producto, BindingResult bindingResult, RedirectAttributes redirectAttrs) {
         if (bindingResult.hasErrors()) {

@@ -53,14 +53,14 @@ public class SoldController {
     @PostMapping(value = "/terminar")
     public String terminarVenta(HttpServletRequest request, RedirectAttributes redirectAttrs) {
         ArrayList<ProductToSell> carrito = this.obtenerCarrito(request);
-        // Si no hay carrito o está vacío, regresamos inmediatamente
+        
         if (carrito == null || carrito.size() <= 0) {
             return "redirect:/vender/";
         }
         Sold v = ventasRepository.save(new Sold());
-        // Recorrer el carrito
+        // Recorrer
         for (ProductToSell productoParaVender : carrito) {
-            // Obtener el producto fresco desde la base de datos
+            // Obtener product
             Product p = productosRepository.findById(productoParaVender.getId()).orElse(null);
             if (p == null) continue; // Si es nulo o no existe, ignoramos el siguiente código con continue
             // Le restamos existencia
@@ -77,7 +77,7 @@ public class SoldController {
         this.limpiarCarrito(request);
         // e indicamos una venta exitosa
         redirectAttrs
-                .addFlashAttribute("mensaje", "Venta realizada correctamente")
+                .addFlashAttribute("mensaje", "Sale Successful")
                 .addFlashAttribute("clase", "success");
         return "redirect:/vender/";
     }
@@ -94,7 +94,8 @@ public class SoldController {
 
     
 	private ArrayList<ProductToSell> obtenerCarrito(HttpServletRequest request) {
-        ArrayList<ProductToSell> carrito = (ArrayList<ProductToSell>) request.getSession().getAttribute("carrito");
+        @SuppressWarnings("unchecked")
+		ArrayList<ProductToSell> carrito = (ArrayList<ProductToSell>) request.getSession().getAttribute("carrito");
         if (carrito == null) {
             carrito = new ArrayList<>();
         }

@@ -47,25 +47,25 @@
 			</div>
 		</div>
 	</nav>
-
 	<br>
 	<br>
-	<div class="col-md-8 col-md-offset-2">
+	<div class="col-sm-9 col-sm-offset-1 col-lg-10 col-lg-offset-1">
         <h2>Report Sales</h2>
         <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}"
              th:text="${mensaje}"
              class="alert">
         </div>
         <a class="btn btn-success mb-2" th:href="@{/vender/}"><i class="fas fa-plus"></i> Add Sale</a>
-        <div class="table-responsive">
         <br>
+        <br>
+        <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
                 <tr>
                     <th># </th>
                     <th>Date</th>
                     <th>Total Invoice</th>
-                    <th>Products</th>
+                    <th>Description</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -74,10 +74,10 @@
                     <td th:text="${venta.fechaYHora}"></td>
                     <td th:text="'Q. '+${venta.total}"></td>
                     <td>
-                        <table class="table table-bordered">
+                        <table class="table table-hover">
                             <thead>
                             <tr>
-                                <th>Name</th>
+                                <th>Name Product</th>
                                 <th>Barcode</th>
                                 <th>Quantity</th>
                                 <th>Price U</th>

@@ -58,24 +58,20 @@ public class SoldController {
             return "redirect:/vender/";
         }
         Sold v = ventasRepository.save(new Sold());
-        // Recorrer
+      
         for (ProductToSell productoParaVender : carrito) {
-            // Obtener product
+           
             Product p = productosRepository.findById(productoParaVender.getId()).orElse(null);
-            if (p == null) continue; // Si es nulo o no existe, ignoramos el siguiente código con continue
-            // Le restamos existencia
+            if (p == null) continue;
             p.restarExistencia(productoParaVender.getCantidad());
-            // Lo guardamos con la existencia ya restada
             productosRepository.save(p);
-            //Creamos un nuevo producto que será el que se guarda junto con la venta
             ProductSold productoVendido = new ProductSold(productoParaVender.getCantidad(), productoParaVender.getPrecio(), productoParaVender.getNombre(), productoParaVender.getCodigo(), v);
-            //Y lo guardamos
+ 
             productosVendidosRepository.save(productoVendido);
         }
 
-        // Al final limpiamos el carrito
         this.limpiarCarrito(request);
-        // e indicamos una venta exitosa
+
         redirectAttrs
                 .addFlashAttribute("mensaje", "Sale Successful")
                 .addFlashAttribute("clase", "success");
@@ -112,13 +108,13 @@ public class SoldController {
         Product productoBuscadoPorCodigo = productosRepository.findFirstByCodigo(producto.getCodigo());
         if (productoBuscadoPorCodigo == null) {
             redirectAttrs
-                    .addFlashAttribute("mensaje", "El producto con el código " + producto.getCodigo() + " no existe")
+                    .addFlashAttribute("mensaje", "The product with the code " + producto.getCodigo() + " does not exist")
                     .addFlashAttribute("clase", "warning");
             return "redirect:/vender/";
         }
         if (productoBuscadoPorCodigo.sinExistencia()) {
             redirectAttrs
-                    .addFlashAttribute("mensaje", "El producto está agotado")
+                    .addFlashAttribute("mensaje", "the product is out of stock")
                     .addFlashAttribute("clase", "warning");
             return "redirect:/vender/";
         }

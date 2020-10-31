@@ -14,20 +14,20 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @NotNull(message = "Debes especificar el nombre")
-    @Size(min = 1, max = 50, message = "El nombre debe medir entre 1 y 50")
+    @NotNull(message = "You must specify the name")
+    @Size(min = 1, max = 50, message = "The name must be between 1 and 50")
     private String nombre;
 
-    @NotNull(message = "Debes especificar el código")
-    @Size(min = 1, max = 50, message = "El código debe medir entre 1 y 50")
+    @NotNull(message = "You must specify the barcode")
+    @Size(min = 1, max = 50, message = "The code must measure between 1 and 50")
     private String codigo;
 
-    @NotNull(message = "Debes especificar el precio")
+    @NotNull(message = "You must specify the price")
     @Min(value = 0, message = "El precio mínimo es 0")
     private Float precio;
 
-    @NotNull(message = "Debes especificar la existencia")
-    @Min(value = 0, message = "La existencia mínima es 0")
+    @NotNull(message = "You must specify the existence")
+    @Min(value = 0, message = "Minimum stock is 0")
     private Float existencia;
 
 
@@ -46,7 +46,7 @@ public class Product {
         this.existencia = existencia;
     }
 
-    public Product(@NotNull(message = "Debes especificar el código") @Size(min = 1, max = 50, message = "El código debe medir entre 1 y 50") String codigo) {
+    public Product(@NotNull(message = "You must specify the name") @Size(min = 1, max = 50, message = "The code must measure between 1 and 50") String codigo) {
         this.codigo = codigo;
     }
 

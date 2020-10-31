@@ -97,7 +97,7 @@
                     <td th:text="${producto.total}"></td>
                     <td>
                         <form th:action="@{/vender/quitar/} + ${iterador.index}" method="post">
-                            <button type="submit" class="btn btn-danger"><i class="fa fa-eraser"></i>
+                            <button type="submit" class="btn btn-danger"><i class="fas fa-times fa-lg"></i>
                             </button>
                         </form>
                     </td>
@@ -107,10 +107,10 @@
         </div>
         <h1 th:text="${'Total: Q. ' + total}"></h1>
         <form class="mb-2" th:action="@{/vender/terminar}" method="post">
-            <button type="submit" class="btn btn-success">Finish&nbsp;<i class="fa fa-check"></i>
+            <button type="submit" class="btn btn-success">Finish &nbsp;<i class="far fa-check-circle fa-lg"></i></i>
             </button>
-            <a th:href="@{/vender/limpiar}" class="btn btn-danger">Cancel Sale&nbsp;<i
-                    class="fa fa-trash"></i>
+            <a th:href="@{/vender/limpiar}" class="btn btn-danger">Cancel &nbsp;
+                    <i class="far fa-trash-alt fa-lg"></i>
             </a>
         </form>
     </div>

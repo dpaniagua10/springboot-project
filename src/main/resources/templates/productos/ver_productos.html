@@ -89,13 +89,14 @@
                     <td th:text="'Q. '+${producto.precio}"></td>
                     <td th:text="${producto.existencia}"></td>
                     <td>
-                        <a class="btn btn-warning" th:href="@{/productos/editar/} + ${producto.id}"><i
-                                class="fa fa-edit"></i></a>
+                        <a class="btn btn-warning" th:href="@{/productos/editar/} + ${producto.id}">
+                        	<i class="fas fa-pencil-alt fa-lg"></i>
+                        </a>
                     </td>
                     <td>
                         <form th:action="@{/productos/eliminar}" method="post">
                             <input type="hidden" name="id" th:value="${producto.id}"/>
-                            <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i>
+                            <button type="submit" class="btn btn-danger"><i class="far fa-trash-alt fa-lg"></i>
                             </button>
                         </form>
                     </td>

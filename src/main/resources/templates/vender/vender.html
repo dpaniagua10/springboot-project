@@ -41,7 +41,7 @@
 				</ul>
 				
 				<ul class="nav navbar-nav">
-					<li sec:authorize="isAuthenticated()"><a th:href="@{/registration}">Users</a></li>
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/usuarios/}">Users</a></li>
 				</ul>
 				
 				<ul class="nav navbar-nav">
@@ -107,7 +107,7 @@
         </div>
         <h1 th:text="${'Total: Q. ' + total}"></h1>
         <form class="mb-2" th:action="@{/vender/terminar}" method="post">
-            <button type="submit" class="btn btn-success">Finish &nbsp;<i class="far fa-check-circle fa-lg"></i></i>
+            <button type="submit" class="btn btn-success">Finish &nbsp;<i class="far fa-check-circle fa-lg"></i>
             </button>
             <a th:href="@{/vender/limpiar}" class="btn btn-danger">Cancel &nbsp;
                     <i class="far fa-trash-alt fa-lg"></i>

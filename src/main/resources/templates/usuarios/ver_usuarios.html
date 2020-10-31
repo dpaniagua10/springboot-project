@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
 
-<title>Web Inventory</title>
+<title>Web Users</title>
 </head>
 <body>
 	<!-- encabezado -->
@@ -60,12 +60,11 @@
 	<!-- col-md-8 col-md-offset-2 -->
 	<!-- col-sm-6 col-md-5 col-md-offset-3 col-lg-6 col-offset-0 -->
 	<div class="col-sm-9 col-sm-offset-1 col-lg-10 col-lg-offset-1">
-        <h2>Inventory</h2>
+        <h2>List Users</h2>
         <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}"
              th:text="${mensaje}"
              class="alert">
         </div>
-        <a class="btn btn-success mb-2" th:href="@{/productos/agregar}"><i class="fas fa-plus"></i> Add Product</a>
         <br>
         <br>
         <div class="table-responsive">
@@ -73,33 +72,18 @@
                 <thead>
                 <tr>
                 	<th># </th>
-                    <th>Name</th>
-                    <th>Barcode</th>
-                    <th>Price</th>
-                    <th>Existence</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>E-mail</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="producto : ${productos}">
-                	<td th:text="${producto.id}"></td>
-                    <td th:text="${producto.nombre}"></td>
-                    <td th:text="${producto.codigo}"></td>
-                    <td th:text="'Q. '+${producto.precio}"></td>
-                    <td th:text="${producto.existencia}"></td>
-                    <td>
-                        <a class="btn btn-warning" th:href="@{/productos/editar/} + ${producto.id}">
-                        	<i class="fas fa-pencil-alt fa-lg"></i>
-                        </a>
-                    </td>
-                    <td>
-                        <form th:action="@{/productos/eliminar}" method="post">
-                            <input type="hidden" name="id" th:value="${producto.id}"/>
-                            <button type="submit" class="btn btn-danger"><i class="far fa-trash-alt fa-lg"></i>
-                            </button>
-                        </form>
-                    </td>
+                <tr th:each="usuario : ${usuarios}">
+                	<td th:text="${usuario.id}"></td>
+                    <td th:text="${usuario.firstName}"></td>
+                    <td th:text="${usuario.lastName}"></td>
+                    <td th:text="${usuario.email}"></td>
+                    
                 </tr>
                 </tbody>
             </table>

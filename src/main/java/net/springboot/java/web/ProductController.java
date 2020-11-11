@@ -40,6 +40,12 @@ public class ProductController {
         return "redirect:/productos/mostrar";
     }
 
+    @GetMapping(value = "/editar/{id}")
+    public String mostrarFormularioEditar(@PathVariable int id, Model model) {
+        model.addAttribute("producto", productosRepository.findById(id).orElse(null));
+        return "productos/editar_producto";
+    }
+
     @PostMapping(value = "/editar/{id}")
     public String actualizarProducto(@ModelAttribute @Valid Product producto, BindingResult bindingResult, RedirectAttributes redirectAttrs) {
         if (bindingResult.hasErrors()) {
@@ -52,25 +58,18 @@ public class ProductController {
 
         if (posibleProductoExistente != null && !posibleProductoExistente.getId().equals(producto.getId())) {
             redirectAttrs
-                    .addFlashAttribute("mensaje", "\r\n"
-                    		+ "There is already a Product with that Code")
+                    .addFlashAttribute("mensaje", "There is already a Product with that Code")
                     .addFlashAttribute("clase", "warning");
             return "redirect:/productos/agregar";
         }
         productosRepository.save(producto);
         redirectAttrs
-                .addFlashAttribute("mensaje", "Product Edited Correctly")
+                .addFlashAttribute("mensaje", "Product Edited Successfully")
                 .addFlashAttribute("clase", "success");
         return "redirect:/productos/mostrar";
     }
-
-    @GetMapping(value = "/editar/{id}")
-    public String mostrarFormularioEditar(@PathVariable int id, Model model) {
-        model.addAttribute("producto", productosRepository.findById(id).orElse(null));
-        return "productos/editar_producto";
-    }
-
-    @PostMapping(value = "/agregar")
+    
+    @PostMapping(value = "/agregar")//guarda registro en base de datos
     public String guardarProducto(@ModelAttribute @Valid Product producto, BindingResult bindingResult, RedirectAttributes redirectAttrs) {
         if (bindingResult.hasErrors()) {
             return "productos/agregar_producto";

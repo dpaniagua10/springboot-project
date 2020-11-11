@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+
+<title>Web Add Store</title>
+</head>
+<body>
+	<!-- encabezado -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#" th:href="@{/}">Home Web</a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/vender/}">Sales</a></li>
+				</ul>
+				<ul class="nav navbar-nav">
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/productos/mostrar}">Inventory</a></li>
+				</ul>
+				
+				<ul class="nav navbar-nav">
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/menus/ver_menu}">Menus</a></li>
+				</ul>
+				
+				<ul class="nav navbar-nav">
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/ventas/}">Report</a></li>
+				</ul>
+								
+				<ul class="nav navbar-nav">
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/tiendas/mostrar}">Stores</a></li>
+				</ul>
+				
+				<ul class="nav navbar-nav">
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/empleados/mostrar}">Employees</a></li>
+				</ul>
+				
+				<ul class="nav navbar-nav">
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/usuarios/}">Users</a></li>
+				</ul>
+				
+				<ul class="nav navbar-nav">
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+				</ul>
+			
+			</div>
+		</div>
+	</nav>
+
+	<br>
+	<br>
+	
+	<!-- frame  -->>
+	
+	<div class="col-md-8 col-md-offset-2">
+        <h2><br>Add Store</h2>
+        <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}"
+             th:text="${mensaje}"
+             class="alert">
+        </div>
+        <form th:object="${tienda}" th:action="@{/tiendas/agregar}" method="post">
+            <div class="form-group">
+                <label for="name">Store Name</label>
+                <input autocomplete="off" autofocus th:field="*{name}" id="name"
+                       type="text"
+                       class="form-control" th:classappend="${#fields.hasErrors('name')} ? 'is-invalid' : ''">
+                <div class="invalid-feedback" th:errors="*{name}"></div>
+            </div>
+            <div class="form-group">
+                <label for="codigo">Code</label>
+                <input autocomplete="off" th:field="*{codigo}" id="codigo"
+                       type="text"
+                       class="form-control" th:classappend="${#fields.hasErrors('codigo')} ? 'is-invalid' : ''">
+                <div class="invalid-feedback" th:errors="*{codigo}"></div>
+
+            </div>
+            <div class="form-group">
+                <label for="existencia">Direction</label>
+                <input autocomplete="off" th:field="*{direction}" id="direction"
+                       type="text"
+                       class="form-control" th:classappend="${#fields.hasErrors('direction')} ? 'is-invalid' : ''">
+                <div class="invalid-feedback" th:errors="*{direction}"></div>
+
+            </div>
+            <button class="btn btn-success" type="submit"><i class="fas fa-save"></i> Save</button>
+            &nbsp;<a class="btn btn-warning" th:href="@{/tiendas/mostrar}"><i class="far fa-list-alt"></i> List all</a>
+        </form>
+    </div>
+
+	<!-- termina -->
+	
+	<script type="text/javascript"
+		th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+	<script type="text/javascript"
+		th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

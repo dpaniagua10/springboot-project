@@ -45,7 +45,7 @@ public class SoldController {
     public String cancelarVenta(HttpServletRequest request, RedirectAttributes redirectAttrs) {
         this.limpiarCarrito(request);
         redirectAttrs
-                .addFlashAttribute("mensaje", "Venta cancelada")
+                .addFlashAttribute("mensaje", "Sale canceled")
                 .addFlashAttribute("clase", "info");
         return "redirect:/vender/";
     }
@@ -90,7 +90,8 @@ public class SoldController {
 
     
 	private ArrayList<ProductToSell> obtenerCarrito(HttpServletRequest request) {
-        @SuppressWarnings("unchecked")
+        //carrito en la sesssion
+		@SuppressWarnings("unchecked")
 		ArrayList<ProductToSell> carrito = (ArrayList<ProductToSell>) request.getSession().getAttribute("carrito");
         if (carrito == null) {
             carrito = new ArrayList<>();

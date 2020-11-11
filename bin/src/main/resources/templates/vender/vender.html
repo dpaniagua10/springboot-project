@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+
+<title>Web Sales</title>
+</head>
+<body>
+	<!-- encabezado -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#" th:href="@{/}">Home Web</a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/vender/}">Sales</a></li>
+				</ul>
+				
+				<ul class="nav navbar-nav">
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/productos/mostrar}">Inventory</a></li>
+				</ul>
+				
+				<ul class="nav navbar-nav">
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/ventas/}">Report</a></li>
+				</ul>
+				
+				<ul class="nav navbar-nav">
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/usuarios/}">Users</a></li>
+				</ul>
+				
+				<ul class="nav navbar-nav">
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+				</ul>
+			
+			</div>
+		</div>
+	</nav>
+
+	<br>
+	<br>
+	
+	<!-- frame  -->>
+	
+	<div class="col-sm-9 col-sm-offset-1 col-lg-10 col-lg-offset-1">
+        <h2>Invoice</h2>
+        <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}"
+             th:text="${mensaje}"
+             class="alert">
+        </div>
+        <form th:object="${producto}" th:action="@{/vender/agregar}" method="post">
+            <div class="form-group">
+                <label for="codigo">Barcode Product</label>
+                <input autofocus autocomplete="off" th:field="*{codigo}" id="codigo"
+                       placeholder="Enter product code"
+                       type="text"
+                       class="form-control" th:classappend="${#fields.hasErrors('codigo')} ? 'is-invalid' : ''">
+                <div class="invalid-feedback" th:errors="*{codigo}"></div>
+
+            </div>
+        </form>
+        
+       	<h4>Description</h4>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Code</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Remove</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="producto, iterador : ${session.carrito}">
+                    <td th:text="${producto.nombre}"></td>
+                    <td th:text="${producto.codigo}"></td>
+                    <td th:text="${producto.precio}"></td>
+                    <td th:text="${producto.cantidad}"></td>
+                    <td th:text="${producto.total}"></td>
+                    <td>
+                        <form th:action="@{/vender/quitar/} + ${iterador.index}" method="post">
+                            <button type="submit" class="btn btn-danger"><i class="fas fa-times fa-lg"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <h1 th:text="${'Total: Q. ' + total}"></h1>
+        <form class="mb-2" th:action="@{/vender/terminar}" method="post">
+            <button type="submit" class="btn btn-success">Finish &nbsp;<i class="far fa-check-circle fa-lg"></i>
+            </button>
+            <a th:href="@{/vender/limpiar}" class="btn btn-danger">Cancel &nbsp;
+                    <i class="far fa-trash-alt fa-lg"></i>
+            </a>
+        </form>
+    </div>
+	
+	<!-- fin frame -->
+	
+	<script type="text/javascript"
+		th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+	<script type="text/javascript"
+		th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

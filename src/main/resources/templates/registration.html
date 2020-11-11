@@ -48,7 +48,7 @@
 					<div class="form-group"
 						th:classappend="${#fields.hasErrors('firstName')}? 'has-error':''">
 						<label for="firstName" class="control-label">First name</label> <input
-							id="firstName" class="form-control" th:field="*{firstName}" />
+							id="firstName" class="form-control" th:field="*{firstName}" required="required"/>
 						<p class="error-message"
 							th:each="error: ${#fields.errors('firstName')}"
 							th:text="${error}">Validation error</p>
@@ -56,7 +56,7 @@
 					<div class="form-group"
 						th:classappend="${#fields.hasErrors('lastName')}? 'has-error':''">
 						<label for="lastName" class="control-label">Last name</label> <input
-							id="lastName" class="form-control" th:field="*{lastName}" />
+							id="lastName" class="form-control" th:field="*{lastName}" required="required"/>
 						<p class="error-message"
 							th:each="error : ${#fields.errors('lastName')}"
 							th:text="${error}">Validation error</p>
@@ -64,7 +64,7 @@
 					<div class="form-group"
 						th:classappend="${#fields.hasErrors('email')}? 'has-error':''">
 						<label for="email" class="control-label">E-mail</label> <input
-							id="email" class="form-control" th:field="*{email}" />
+							id="email" class="form-control" th:field="*{email}" required="required"/>
 						<p class="error-message"
 							th:each="error : ${#fields.errors('email')}" th:text="${error}">Validation
 							error</p>
@@ -73,7 +73,7 @@
 						th:classappend="${#fields.hasErrors('confirmEmail')}? 'has-error':''">
 						<label for="confirmEmail" class="control-label">Confirm
 							e-mail</label> <input id="confirmEmail" class="form-control"
-							th:field="*{confirmEmail}" />
+							th:field="*{confirmEmail}" required="required"/>
 						<p class="error-message"
 							th:each="error : ${#fields.errors('confirmEmail')}"
 							th:text="${error}">Validation error</p>
@@ -82,7 +82,7 @@
 						th:classappend="${#fields.hasErrors('password')}? 'has-error':''">
 						<label for="password" class="control-label">Password</label> <input
 							id="password" class="form-control" type="password"
-							th:field="*{password}" />
+							th:field="*{password}" required="required"/>
 						<p class="error-message"
 							th:each="error : ${#fields.errors('password')}"
 							th:text="${error}">Validation error</p>
@@ -91,14 +91,17 @@
 						th:classappend="${#fields.hasErrors('confirmPassword')}? 'has-error':''">
 						<label for="confirmPassword" class="control-label">Confirm
 							password</label> <input id="confirmPassword" class="form-control"
-							type="password" th:field="*{confirmPassword}" />
+							type="password" th:field="*{confirmPassword}" required="required"/>
 						<p class="error-message"
 							th:each="error : ${#fields.errors('confirmPassword')}"
 							th:text="${error}">Validation error</p>
 					</div>
 					<div class="form-group"
 						th:classappend="${#fields.hasErrors('terms')}? 'has-error':''">
-						<input id="terms" type="checkbox" th:field="*{terms}" />   <label
+						<input id="terms" type="checkbox" 
+						onchange="document.getElementById('btnLogin').disabled = !this.checked;"
+						th:field="*{terms}" />   
+						<label
 							class="control-label" for="terms"> I agree with the <a
 							href="#">terms and conditions</a> for Registration.
 						</label>
@@ -107,7 +110,7 @@
 							error</p>
 					</div>
 					<div class="form-group">
-						<button type="submit" class="btn btn-success">Register</button>
+						<button type="submit" class="btn btn-success" id="btnLogin" disabled="disabled">Register</button>
 						<span>Already registered? <a href="/" th:href="@{/login}">Login
 								here</a></span>
 					</div>

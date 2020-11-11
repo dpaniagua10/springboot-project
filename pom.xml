@@ -36,6 +36,19 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
+		<!-- auth0 -->
+		<dependency>
+		    <groupId>com.auth0</groupId>
+		    <artifactId>mvc-auth-commons</artifactId>
+		    <version>1.2.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-oauth2-client -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-oauth2-client</artifactId>
+		    
+		</dependency>	
+		
 		<dependency>
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
@@ -58,9 +71,7 @@
 		    <artifactId>validation-api</artifactId>
 		</dependency>
 				
-
-
-		<!-- bootstrap and jquery -->
+		<!-- bootstrap, jquery -->
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>bootstrap</artifactId>

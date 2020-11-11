@@ -34,7 +34,19 @@
 				</ul>
 				
 				<ul class="nav navbar-nav">
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/menus/ver_menu}">Menus</a></li>
+				</ul>
+				
+				<ul class="nav navbar-nav">
 					<li sec:authorize="isAuthenticated()"><a th:href="@{/ventas/}">Report</a></li>
+				</ul>
+								
+				<ul class="nav navbar-nav">
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/tiendas/mostrar}">Stores</a></li>
+				</ul>
+				
+				<ul class="nav navbar-nav">
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/empleados/mostrar}">Employees</a></li>
 				</ul>
 				
 				<ul class="nav navbar-nav">
@@ -44,7 +56,6 @@
 				<ul class="nav navbar-nav">
 					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
 				</ul>
-		
 			</div>
 		</div>
 	</nav>

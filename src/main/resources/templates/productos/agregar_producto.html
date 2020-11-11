@@ -36,7 +36,19 @@
 				</ul>
 				
 				<ul class="nav navbar-nav">
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/menus/ver_menu}">Menus</a></li>
+				</ul>
+				
+				<ul class="nav navbar-nav">
 					<li sec:authorize="isAuthenticated()"><a th:href="@{/ventas/}">Report</a></li>
+				</ul>
+								
+				<ul class="nav navbar-nav">
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/tiendas/mostrar}">Stores</a></li>
+				</ul>
+				
+				<ul class="nav navbar-nav">
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/empleados/mostrar}">Employees</a></li>
 				</ul>
 				
 				<ul class="nav navbar-nav">
@@ -76,7 +88,6 @@
                        type="text"
                        class="form-control" th:classappend="${#fields.hasErrors('codigo')} ? 'is-invalid' : ''">
                 <div class="invalid-feedback" th:errors="*{codigo}"></div>
-
             </div>
             <div class="form-group">
                 <label for="existencia">Existence</label>

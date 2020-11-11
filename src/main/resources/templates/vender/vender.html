@@ -31,13 +31,24 @@
 				<ul class="nav navbar-nav">
 					<li sec:authorize="isAuthenticated()"><a th:href="@{/vender/}">Sales</a></li>
 				</ul>
-				
 				<ul class="nav navbar-nav">
 					<li sec:authorize="isAuthenticated()"><a th:href="@{/productos/mostrar}">Inventory</a></li>
 				</ul>
 				
 				<ul class="nav navbar-nav">
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/menus/ver_menu}">Menus</a></li>
+				</ul>
+				
+				<ul class="nav navbar-nav">
 					<li sec:authorize="isAuthenticated()"><a th:href="@{/ventas/}">Report</a></li>
+				</ul>
+								
+				<ul class="nav navbar-nav">
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/tiendas/mostrar}">Stores</a></li>
+				</ul>
+				
+				<ul class="nav navbar-nav">
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/empleados/mostrar}">Employees</a></li>
 				</ul>
 				
 				<ul class="nav navbar-nav">
@@ -97,7 +108,7 @@
                     <td th:text="${producto.total}"></td>
                     <td>
                         <form th:action="@{/vender/quitar/} + ${iterador.index}" method="post">
-                            <button type="submit" class="btn btn-danger"><i class="fas fa-times fa-lg"></i>
+                            <button type="submit" class="btn btn-danger"><i class="fas fa-times fa-md"></i>
                             </button>
                         </form>
                     </td>

@@ -28,7 +28,6 @@
 				<a class="navbar-brand" href="#" th:href="@{/}">Home Web</a>
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
-		
 				<ul class="nav navbar-nav">
 					<li sec:authorize="isAuthenticated()"><a th:href="@{/vender/}">Sales</a></li>
 				</ul>
@@ -37,13 +36,24 @@
 				</ul>
 				
 				<ul class="nav navbar-nav">
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/menus/ver_menu}">Menus</a></li>
+				</ul>
+				
+				<ul class="nav navbar-nav">
 					<li sec:authorize="isAuthenticated()"><a th:href="@{/ventas/}">Report</a></li>
+				</ul>
+								
+				<ul class="nav navbar-nav">
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/tiendas/mostrar}">Stores</a></li>
+				</ul>
+				
+				<ul class="nav navbar-nav">
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/empleados/mostrar}">Employees</a></li>
 				</ul>
 				
 				<ul class="nav navbar-nav">
 					<li sec:authorize="isAuthenticated()"><a th:href="@{/usuarios/}">Users</a></li>
 				</ul>
-				
 				
 				<ul class="nav navbar-nav">
 					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
